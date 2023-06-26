@@ -1,0 +1,12 @@
+create table employee(
+	id int AUTO_INCREMENT,
+	name varchar(200),
+    birthDay varchar(50),
+    address varchar(300),
+    position varchar(50),
+    department varchar(150),
+    PRIMARY KEY (id)
+);
+
+insert into employee(name, birthDay, address, position, department) VALUES('Nguyen Van An', '2000-02-10', 'Ha Noi', 'Staff', 'IT'),
+('Nguyen Thi Van', '2000-10-09', 'Ha Noi', 'President', 'IT')
