@@ -19,25 +19,25 @@
     <form action="edit" method="POST">
         <div class="form-group">
             <label for="name">Name:</label>
-            <input type="text" class="form-control" id="name" name="name" required>
+            <input type="text" class="form-control" id="name" name="name" value="${employee.name}" required>
         </div>
         <div class="form-group">
             <label for="address">Address:</label>
-            <input type="text" class="form-control" id="address" name="address" required>
+            <input type="text" class="form-control" id="address" name="address" value="${employee.address}" required>
         </div>
         <div class="form-group">
             <label for="birthDay">BirthDay:</label>
-            <input type="date" class="form-control" id="birthDay" name="birthDay" required>
+            <input type="date" class="form-control" id="birthDay" name="birthDay" value="${employee.birthDay}" required>
         </div>
         <div class="form-group">
             <label for="position">Position:</label>
-            <input type="text" class="form-control" id="position" name="position" required>
+            <input type="text" class="form-control" id="position" name="position" value="${employee.position}" required>
         </div>
         <div class="form-group">
             <label for="department">Department:</label>
-            <input type="text" class="form-control" id="department" name="department" required>
+            <input type="text" class="form-control" id="department" name="department" value="${employee.department}" required>
         </div>
-        <button type="submit" class="btn btn-primary">Create</button>
+        <button type="submit" class="btn btn-primary">Update</button>
     </form>
 </div>
 </body>

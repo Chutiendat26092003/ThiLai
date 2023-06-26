@@ -16,11 +16,14 @@ import java.util.List;
 @WebServlet(name = "editEmployeeServlet", value = "/edit")
 public class UpdateEmployeeController extends HttpServlet {
     private EmployeeDao employeeDao = new EmployeeDao();
+    private int idEmp;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //Employee employee = ;
-        //request.setAttribute("employee", employee);
+        String id = request.getParameter("id");
+        idEmp = Integer.parseInt(id);
+        Employee employee = employeeDao.findById(idEmp);
+        request.setAttribute("employee", employee);
         RequestDispatcher dispatcher = request.getRequestDispatcher("edit-employee.jsp");
         dispatcher.forward(request, response);
     }
@@ -32,7 +35,7 @@ public class UpdateEmployeeController extends HttpServlet {
         String birthDay = request.getParameter("birthDay");
         String position = request.getParameter("position");
         String department = request.getParameter("department");
-        Employee newEmployee = new Employee(name, address, birthDay, position,department);
+        Employee newEmployee = new Employee(idEmp, name, address, birthDay, position,department);
         employeeDao.update(newEmployee);
         response.sendRedirect(request.getContextPath() + "/employees");
     }

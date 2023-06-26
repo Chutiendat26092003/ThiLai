@@ -59,6 +59,34 @@ public class EmployeeDao {
         return employees;
     }
 
+    public Employee findById(int idEmp) {
+        Employee employee = new Employee();
+
+        try {
+            ResultSet rs = CONNECTION.createStatement().executeQuery("SELECT * FROM employee WHERE id=" + idEmp);
+            if(rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                String address = rs.getString("address");
+                String birthDay = rs.getString("birthDay");
+                String position = rs.getString("position");
+                String department = rs.getString("department");
+
+                employee.setId(id);
+                employee.setName(name);
+                employee.setAddress(address);
+                employee.setBirthDay(birthDay);
+                employee.setPosition(position);
+                employee.setDepartment(department);
+            }
+            rs.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        return employee;
+    }
+
     public void addEmp(Employee employee) {
 
         try {
@@ -75,7 +103,7 @@ public class EmployeeDao {
         }
     }
 
-    public void update(Employee employee){
+    public void update(Employee employee) {
         try {
             PreparedStatement pstmt = CONNECTION.prepareStatement("UPDATE employee set name=? , address=?, birthDay=?, position=?, department=? WHERE id=?");
             pstmt.setString(1, employee.getName());
@@ -86,17 +114,17 @@ public class EmployeeDao {
             pstmt.setInt(6, employee.getId());
             pstmt.executeUpdate();
             pstmt.close();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void delete(int Id){
+    public void delete(int Id) {
         try {
             PreparedStatement preparedStatement = CONNECTION.prepareStatement("DELETE FROM employee WHERE id=?");
             preparedStatement.setInt(1, Id);
             preparedStatement.execute();
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
